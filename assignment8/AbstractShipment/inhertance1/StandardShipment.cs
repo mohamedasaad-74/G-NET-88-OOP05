@@ -1,0 +1,50 @@
+﻿using assignment8.AbstractShipment.class1;
+using assignment8.AbstractShipment.interface1;
+using assignment8.AbstractShipment.interface2;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace assignment8.AbstractShipment.inhertance1
+{
+    public class StandardShipment : Shipment, ITrackable , IInsurable
+    {
+
+
+
+        public StandardShipment(string TrackingCode, string Description, double Weight, decimal Delivryfee, DeliveryAddress Destination) : base(TrackingCode, Description, Weight, Delivryfee, Destination)
+        {
+
+        }
+
+        public override string ToString()
+        {
+
+            return $"TrackingCode   {trackingcode} , Description : {description}. Weight : {weight},Destination : {destination}";
+            
+
+        }
+        public override decimal EstimatedCost
+        {
+            get { return(decimal) weight * deliveryfee  ; }
+
+        }
+        public override void PrintShipment()
+        {
+           
+            Console.WriteLine($"Estimed cost {EstimatedCost} , TrackingCode   {trackingcode} , Description : {description}. Weight : {weight},Destination : {destination}");
+        }
+
+        public string GetTrackingStatus()
+        { 
+            return $"Shipment {trackingcode} is Ready !";
+        }
+
+        public decimal CalculateInsurance()
+        {
+            return EstimatedCost * 0.05m;
+        }
+    }
+}
